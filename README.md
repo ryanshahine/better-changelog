@@ -8,9 +8,7 @@ Runs entirely on **Cloudflare Workers + D1** via [`@opennextjs/cloudflare`](http
 
 ## Deploy your own (one click)
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/YOUR_GITHUB_USERNAME/better-changelog)
-
-> Update the URL above to point at your fork before sharing.
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ryanshahine/better-changelog)
 
 The [Deploy to Cloudflare](https://developers.cloudflare.com/workers/platform/deploy-buttons/) button will:
 
