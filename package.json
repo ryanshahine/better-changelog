@@ -1,0 +1,61 @@
+{
+  "name": "better-changelog",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Self-hostable, one-click-deploy changelog app that drafts entries from merged GitHub PRs. Runs on Cloudflare Workers + D1.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "db:migrations:apply": "wrangler d1 migrations apply DB --remote",
+    "db:migrations:apply:local": "wrangler d1 migrations apply DB --local",
+    "deploy": "opennextjs-cloudflare build && npm run db:migrations:apply && opennextjs-cloudflare deploy -- --keep-vars",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260420.1",
+    "@opennextjs/cloudflare": "^1.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.65.0"
+  },
+  "cloudflare": {
+    "label": "Better Changelog",
+    "products": [
+      "Workers",
+      "D1"
+    ],
+    "categories": [
+      "developer-tools"
+    ],
+    "bindings": {
+      "CHANGELOG_REPO": {
+        "description": "The `owner/repo` of **this** changelog app fork. Example: `yourname/better-changelog`. Used to gate access to `/admin` and `/setup` — only GitHub users with write access to this repo can sign in. Everything else (tracked repo, prod branch, webhook URL) is configured via the in-app `/setup` GUI after deploy."
+      },
+      "GITHUB_CLIENT_ID": {
+        "description": "Client ID of your GitHub OAuth App. Create one at [github.com/settings/developers](https://github.com/settings/developers). The **Authorization callback URL** must be `<your-app-url>/api/auth/callback`."
+      },
+      "GITHUB_CLIENT_SECRET": {
+        "description": "Client Secret of your GitHub OAuth App."
+      },
+      "SESSION_SECRET": {
+        "description": "Random string used to sign sessions. Generate with `openssl rand -hex 32`."
+      }
+    }
+  }
+}

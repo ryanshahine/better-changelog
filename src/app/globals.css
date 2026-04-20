@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* Design tokens, mirroring the minimal palette from ryanshahine-www but in a
+   neutral form so forks can re-theme easily. Supports light + dark. */
+:root {
+  --font-fallback:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-primary: var(--font-fallback);
+  --font-code:
+    "SF Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --body-bg: #fdfdfc;
+  --body-color: #111;
+  --muted: rgba(0, 0, 0, 0.52);
+  --border-soft: #ececec;
+  --panel: #ffffff;
+  --accent: #111;
+  --selection-bg: #ededed;
+  --focus-color: rgba(0, 122, 255, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #0b0b0c;
+    --body-color: #f2f2f2;
+    --muted: rgba(255, 255, 255, 0.55);
+    --border-soft: #1d1d20;
+    --panel: #131316;
+    --accent: #f2f2f2;
+    --selection-bg: #2a2a2e;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--body-bg);
+  --color-fg: var(--body-color);
+  --color-muted: var(--muted);
+  --color-border: var(--border-soft);
+  --color-panel: var(--panel);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-primary);
+  --font-mono: var(--font-code);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--body-bg);
+    color: var(--body-color);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+}

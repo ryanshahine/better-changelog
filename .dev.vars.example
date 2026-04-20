@@ -1,0 +1,15 @@
+# Secrets for `wrangler dev` / `next dev`. Copy to `.dev.vars` and fill in.
+# In production, the Cloudflare deploy button will prompt for these and store
+# them as Worker secrets automatically.
+
+# GitHub OAuth App (create one at https://github.com/settings/developers).
+# Authorization callback URL should be <APP_URL>/api/auth/callback.
+GITHUB_CLIENT_ID="Iv1.xxxxxxxxxxxxxxxx"
+GITHUB_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# Random string used to sign sessions. Generate with: openssl rand -hex 32
+SESSION_SECRET="another-long-random-string-at-least-32-chars"
+
+# owner/repo of this changelog app (e.g. your fork of better-changelog).
+# Only users with write access to this repo can sign in to /admin and /setup.
+CHANGELOG_REPO="yourusername/better-changelog"
